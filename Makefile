@@ -1,8 +1,8 @@
-DOCKER_COMPOSE = docker compose --project-name medicore-assessment --file compose.yaml
+DOCKER_COMPOSE = docker compose --project-name assessment-july-2024 --file compose.yaml
 
 .PHONY: run
 ## Generate the csv file with travel compensations per employee per month
-run: var/.built vendor/composer/installed.json
+run: .built vendor/composer/installed.json
 	@$(DOCKER_COMPOSE) run php bin/console generate-csv
 
 .PHONY: save
@@ -10,13 +10,13 @@ run: var/.built vendor/composer/installed.json
 save: travel-compensation-per-month.csv
 
 .PHONY: travel-compensation-per-month.csv
-travel-compensation-per-month.csv: var/.built vendor/composer/installed.json
+travel-compensation-per-month.csv: .built vendor/composer/installed.json
 	@$(DOCKER_COMPOSE) run php bin/console generate-csv > $@
 	@echo CSV file generated as $@
 
 .PHONY: shell
 ## Opens a shell into the php container
-shell: var/.built vendor/composer/installed.json
+shell: .built vendor/composer/installed.json
 	$(DOCKER_COMPOSE) run php sh
 
 .PHONY: test
@@ -43,13 +43,13 @@ fix:
 clean:
 	git clean -fdX --exclude=\!.idea
 
-var/.built: Dockerfile
+.built: Dockerfile
 	$(DOCKER_COMPOSE) build php
 	touch $@
 
 vendor/composer/installed.json: composer.lock
 	$(DOCKER_COMPOSE) run php composer install
-	touch $@ # composer install does not always update the change time of installed.json, so we touch it to make sure we don't run composer install too often
+	@touch $@ # composer install does not always update the change time of installed.json, so we touch it to make sure we don't run composer install too often
 
 .PHONY: help
 ## Show this help
