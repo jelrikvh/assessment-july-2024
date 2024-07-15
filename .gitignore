@@ -14,16 +14,7 @@
 var
 travel-compensation-per-month.csv
 
-###> squizlabs/php_codesniffer ###
-/.phpcs-cache
-/phpcs.xml
-###< squizlabs/php_codesniffer ###
-
-###> phpstan/phpstan ###
-phpstan.neon
-###< phpstan/phpstan ###
 
 ###> phpunit/phpunit ###
-/phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###

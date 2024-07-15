@@ -26,10 +26,10 @@ test:
 		vendor/bin/phpstan analyse -c phpstan.neon --ansi src \
 		&& vendor/bin/phpcs --colors -s src \
 		&& php vendor/bin/phpunit \
-		&& php coverage-checker.php var/cache/test-coverage/clover.xml 100 \
+		&& php coverage-checker.php var/code-coverage/clover.xml 100 \
 		&& php -derror_reporting -ddisplay_errors=On vendor/bin/infection \
 			--skip-initial-tests \
-			--coverage=var/cache/test-coverage/ \
+			--coverage=var/code-coverage/ \
 			--only-covered \
 	'
 
