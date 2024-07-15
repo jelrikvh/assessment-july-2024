@@ -5,7 +5,7 @@ and is not licensed to you, whoever you are reading this :-).
 
 ## Usage
 
-The application come with a handy `Makefile`. It tells you what you can do:
+The application comes with a handy `Makefile`. It tells you what you can do:
 
 ```bash
 $ make help
