@@ -1,0 +1,14 @@
+services:
+
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: app:app
+    volumes:
+      - .:/var/opt
+      - ./infra/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+    environment:
+      PHP_IDE_CONFIG: "serverName=assessment"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
