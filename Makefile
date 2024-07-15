@@ -21,7 +21,7 @@ shell: .built vendor/composer/installed.json
 
 .PHONY: test
 ## Runs all test and quality control tools (phpstan, phpcs, phpunit, code coverage checker, and infection
-test:
+test: .built vendor/composer/installed.json
 	$(DOCKER_COMPOSE) run php sh -c '\
 		vendor/bin/phpstan analyse -c phpstan.neon --ansi src \
 		&& vendor/bin/phpcs --colors -s src \
